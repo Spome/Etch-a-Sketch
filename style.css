@@ -3,10 +3,16 @@ body {
   margin: 0;
 }
 
+#clearButton {
+  margin: 0 auto;
+  display: block;
+  padding: 10px;
+}
+
 #container {
   display: flex;
   flex-wrap: wrap;
-  width: 880px;
+  width: 860px;
   margin: 0 auto;
 }
 
