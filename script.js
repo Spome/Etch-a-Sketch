@@ -5,29 +5,56 @@ let containerDiv = document.querySelector("#container")
 
 let clearButton = document.querySelector("#clearButton");
 
-let size = 64;
+let slider = document.querySelector("#slider");
+let sliderOutputValue = document.querySelector("#sliderValue");
 
-for (let i=1; i <= size; i++) {
-  for (let j=1; j <= size; j++) {
-    const gridDiv = document.createElement('div')
-    gridDiv.style.backgroundColor = "white";
-    gridDiv.classList.add("gridDiv");
-    gridDiv.addEventListener("mouseover", function(event) {
-      event.target.style.backgroundColor = "black";
-    });
+let size = 16;
 
-    containerDiv.appendChild(gridDiv);
+/*
+slider.oninput = function() {
+  sliderOutputValue.textContent = this.value;
+  console.log(size);
+  removeGrid();
+}
+*/
+
+function createGrid() {
+  containerDiv.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
+
+  for (let i=1; i <= size; i++) {
+    for (let j=1; j <= size; j++) {
+      const gridDiv = document.createElement('div')
+      gridDiv.style.backgroundColor = "white";
+      gridDiv.classList.add("gridDiv");
+      gridDiv.addEventListener("mouseover", function(event) {
+        event.target.style.backgroundColor = "black";
+      });
+
+      containerDiv.appendChild(gridDiv);
+    }
   }
 }
 
-containerDiv.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
+function removeGrid() {
+  while (containerDiv.firstChild) {
+    containerDiv.removeChild(containerDiv.firstChild);
+  }
+}
 
-function clearAll() {
+function clearColor() {
   document.querySelectorAll('.gridDiv').forEach(function(node) {
     node.style.backgroundColor = "white";
   })
 }
 
-clearButton.addEventListener('click', clearAll);
 
+function clearAll() {
+  clearColor();
+  size = prompt("Enter size:")
+  removeGrid();
+  createGrid();
+}
+
+clearButton.addEventListener('click', clearAll);
+createGrid();
 
