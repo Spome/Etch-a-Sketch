@@ -5,19 +5,20 @@ let containerDiv = document.querySelector("#container")
 
 let clearButton = document.querySelector("#clearButton");
 
+let eraserButton = document.querySelector("#eraserButton");
+
 let slider = document.querySelector("#slider");
 let sliderOutputValue = document.querySelector("#sliderValue");
-console.log(slider);
 
 let colorPicker = document.querySelector("#colorPicker");
-console.log(colorPicker);
 
-colorPicker.onchange = function() {
-  event.target.style.backgroundColor = colorPicker.value;
-}
-
+let colorValue = "#000000"
 
 let size = 16;
+
+colorPicker.onchange = function() {
+  colorValue = colorPicker.value;
+}
 
 slider.oninput = function() {
   sliderOutputValue.textContent = `${this.value} x ${this.value}`;
@@ -28,8 +29,10 @@ slider.onchange = function() {
   clearAll();
 }
 
-
 clearButton.addEventListener('click', clearColor);
+eraserButton.addEventListener('click', function() {
+  colorValue = "#ffffff"
+})
 
 function createGrid() {
   containerDiv.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
@@ -40,7 +43,7 @@ function createGrid() {
       gridDiv.style.backgroundColor = "white";
       gridDiv.classList.add("gridDiv");
       gridDiv.addEventListener("mouseover", function(event) {
-        event.target.style.backgroundColor = "black";
+        event.target.style.backgroundColor = colorValue;
       });
 
       containerDiv.appendChild(gridDiv);

@@ -22,7 +22,7 @@ h1 {
   gap: 3em;
 }
 
-#clearButton {
+#clearButton, #eraserButton {
   background-color: rgb(97, 96, 96);
   border: 1px solid black;
   color: rgb(236, 235, 235);
@@ -31,7 +31,7 @@ h1 {
   font-size: 20px;
 }
 
-#clearButton:hover {
+#clearButton:hover, #eraserButton:hover {
   background-color: rgb(78, 78, 78);
 }
 
