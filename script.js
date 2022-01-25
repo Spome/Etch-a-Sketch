@@ -7,16 +7,29 @@ let clearButton = document.querySelector("#clearButton");
 
 let slider = document.querySelector("#slider");
 let sliderOutputValue = document.querySelector("#sliderValue");
+console.log(slider);
+
+let colorPicker = document.querySelector("#colorPicker");
+console.log(colorPicker);
+
+colorPicker.onchange = function() {
+  event.target.style.backgroundColor = colorPicker.value;
+}
+
 
 let size = 16;
 
-/*
 slider.oninput = function() {
-  sliderOutputValue.textContent = this.value;
-  console.log(size);
-  removeGrid();
+  sliderOutputValue.textContent = `${this.value} x ${this.value}`;
 }
-*/
+
+slider.onchange = function() {
+  size = this.value;
+  clearAll();
+}
+
+
+clearButton.addEventListener('click', clearColor);
 
 function createGrid() {
   containerDiv.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
@@ -50,11 +63,10 @@ function clearColor() {
 
 function clearAll() {
   clearColor();
-  size = prompt("Enter size:")
   removeGrid();
   createGrid();
 }
 
-clearButton.addEventListener('click', clearAll);
+
 createGrid();
 
